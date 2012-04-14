@@ -1,7 +1,7 @@
 require 'rake'
-require 'rake/testtask'
+require File.join('rake', 'testtask')
 require 'tlb'
-require 'tlb/util'
+require File.join('tlb', 'util')
 
 class Tlb::TestUnit::TestTask < Rake::TestTask
   def initialize *args
