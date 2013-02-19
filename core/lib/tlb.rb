@@ -32,6 +32,7 @@ module Tlb
     end
 
     def self.get path
+      sleep 2
       Net::HTTP.get_response(host, path, port).body
     end
 
@@ -161,14 +162,14 @@ module Tlb
   class ForkBalancerProcess < BalancerProcess
     def start server_command
 
-  input,err,out, @t= open5(server_command)
-        @pid=@t.pid
+      input,err,out, @t= open5(server_command)
+      @pid=@t.pid
 
-  unless (out)
-          raise "out was nil"
-        end
+      unless (out)
+        raise "out was nil"
+      end
 
-  return Class.new(StreamPumper) do
+      return Class.new(StreamPumper) do
         def data_available?
           not @stream.eof?
         end
@@ -180,18 +181,18 @@ module Tlb
     end
 
 
- def die
-   super
-   begin
-     @pid = nil
-     Process.wait
-   rescue Errno::ECHILD
-    puts "Got Errno::ECHILD"
-   rescue Exception => excep
-    raise excep
-   end
- end
-end
+    def die
+      super
+      begin
+        @pid = nil
+        Process.wait
+      rescue Errno::ECHILD
+        puts "Got Errno::ECHILD"
+      rescue Exception => excep
+        raise excep
+      end
+    end
+  end
 
   class JavaBalancerProcess < BalancerProcess
     def start server_command

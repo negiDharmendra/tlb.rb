@@ -1,7 +1,8 @@
 require File.join(File.dirname(__FILE__), 'spec_helper')
-require 'open4'
+require 'open5'
 require 'tmpdir'
 require 'webrick'
+require 'tlb'
 
 describe Tlb do
   URL = "http://localhost:7019"
