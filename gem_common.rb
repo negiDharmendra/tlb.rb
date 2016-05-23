@@ -41,7 +41,7 @@ def module_files
 end
 
 def depends_on_core s
-  s.add_runtime_dependency 'tlb-core', "#{TAG_VERSION}"
+  s.add_runtime_dependency 'tlb-core', "0.3.3"
 end
 
 
